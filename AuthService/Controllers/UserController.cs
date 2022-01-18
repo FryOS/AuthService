@@ -51,7 +51,7 @@ namespace AuthService.Controllers
 
             var userViewModel = _mapper.Map<UserViewModel>(user);
             
-            //UserViewModel userViewModel = new UserViewModel(user); замен на строке выше
+            //UserViewModel userViewModel = new UserViewModel(user); замена на строке выше
 
             return userViewModel;
         }

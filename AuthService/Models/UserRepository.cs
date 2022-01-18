@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AuthService.Models
@@ -14,8 +15,12 @@ namespace AuthService.Models
 
         User IUserRepository.GetByLogin(string login)
         {
-            return _userContext.Users.FirstOrDefault(x => x.Login == login);
-             
+            return _userContext.Users.FirstOrDefault(x => x.Login == login);             
+        }
+
+        internal User GetByLogin(string login)
+        {
+            throw new NotImplementedException();
         }
     }
 }

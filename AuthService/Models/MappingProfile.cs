@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 
 namespace AuthService.Models
 {
@@ -8,6 +9,11 @@ namespace AuthService.Models
         {
             CreateMap<User, UserViewModel>()
                 .ConstructUsing(v => new UserViewModel(v));
+        }
+
+        internal T CreateMap<T>(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

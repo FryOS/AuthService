@@ -10,6 +10,6 @@ namespace AuthService.Models
         {
             Database.EnsureCreated();
         }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> UsersAuth { get; set; }
     }
 }

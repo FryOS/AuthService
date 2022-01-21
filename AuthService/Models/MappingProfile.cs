@@ -11,9 +11,5 @@ namespace AuthService.Models
                 .ConstructUsing(v => new UserViewModel(v));
         }
 
-        internal T CreateMap<T>(User user)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -10,15 +10,15 @@ namespace AuthService.Models
         public Guid Id { get; set; }
         public string FullName { get; set; }
         public bool FromRussia { get; set; }
-
-        private readonly UserRepository _userRepository;
-        private readonly MappingProfile _mapper;
+        public string RoleName { get; set; }
+        
 
         public UserViewModel(User user)
         {
             Id = user.Id;
             FullName = GetFullName(user.FirstName, user.LastName);
             FromRussia = GetFromRussiaValue(user.Email);
+            RoleName = GetRoleName(user.Role);
         }
 
         public string GetFullName(string firstName, string lastName)
@@ -35,23 +35,9 @@ namespace AuthService.Models
             return false;
         }
 
-        [HttpPost]
-        [Route("authenticate")]
-        public UserViewModel Authenticate(string login, string password)
+        public string GetRoleName(Role role)
         {
-            if (String.IsNullOrEmpty(login) ||
-                String.IsNullOrEmpty(password))
-                throw new ArgumentNullException("Запрос не корректен");
-
-            User user = _userRepository.GetByLogin(login);
-            if (user is null)
-                throw new AuthenticationException("Пользователь на найден");
-
-            if (user.Password != password)
-                throw new AuthenticationException("Введенный пароль не корректен");
-
-            return _mapper.CreateMap<UserViewModel>(user);
-
+            return role.Name;
         }
     }
 }
